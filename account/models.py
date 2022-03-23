@@ -1,18 +1,19 @@
 from django.db import models
 from user import User
 
+
 class Customer(models.Model):
     """
     customer model
     """
-    
+
     STATUS_PROSPECT = "prospect"
     STATUS_CUSTOMER = "customer"
     STATUS_CHOICES = [
         (STATUS_PROSPECT, "Prospect"),
         (STATUS_CUSTOMER, "Customer"),
     ]
-    
+
     company_name = models.CharField(max_length=255, null=False)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)

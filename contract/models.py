@@ -1,7 +1,7 @@
 from django.db import models
 from account.models import Customer
 from user.models import User
-from event.models import Event
+from events.models import Event
 
 
 class Contract(models.Model):

@@ -1,7 +1,6 @@
 from django.db import models
 from account.models import Customer
 from user.models import User
-from events.models import Event
 
 
 class Contract(models.Model):
@@ -23,6 +22,5 @@ class Contract(models.Model):
     created_datetime = models.DateTimeField(auto_now_add=True)
     update_datetime = models.DateTimeField(auto_now=True)
     status = models.CharField(max_length=50, choices=STATUS_CHOICES)
-    saler = models.ForeignKey(to=User)
-    customer = models.ForeignKey(to=Customer)
-    event = models.ForeignKey(to=Event)
+    saler = models.ForeignKey(to=User, on_delete=models.DO_NOTHING)
+    customer = models.ForeignKey(to=Customer, on_delete=models.DO_NOTHING)

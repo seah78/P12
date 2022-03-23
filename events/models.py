@@ -25,5 +25,5 @@ class Event(models.Model):
     status = models.CharField(max_length=50, choices=STATUS_CHOICES, null=False)
     created_datetime = models.DateTimeField(auto_now_add=True)
     update_datetime = models.DateTimeField(auto_now=True)
-    contract = models.ForeignKey(to=Contract)
-    support_user = models.ForeignKey(to=User)
+    contract = models.ForeignKey(to=Contract, on_delete=models.DO_NOTHING)
+    support_user = models.ForeignKey(to=User, on_delete=models.DO_NOTHING)

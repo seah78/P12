@@ -7,4 +7,4 @@ class CustomerAdmin(admin.ModelAdmin):
     list_display = ('company_name', 'first_name', 'last_name', 
                     'email', 'salers')
     list_filter = ('salers',)
-    search_fields = ('company_name',)
+    search_fields = ('company_name', 'salers',)

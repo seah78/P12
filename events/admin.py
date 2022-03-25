@@ -9,5 +9,5 @@ class EventAdmin(admin.ModelAdmin):
                     'status', 'contract', 
                     'support_user')
     list_filter = ('contract',)
-    search_fields = ('name',)
+    search_fields = ('name', 'status', 'contract')
 

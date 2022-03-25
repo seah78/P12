@@ -16,7 +16,7 @@ class User(AbstractUser):
         (DEPARTEMENT_TECHNICIAN, "Technician"),
     ]
 
-    user_name = models.CharField(max_length=50, null=False, unique=True)
+    username = models.CharField(max_length=50, null=False, unique=True)
     first_name = models.CharField(max_length=30, null=False)
     last_name = models.CharField(max_length=30, null=False)
     email = models.EmailField(max_length=60, null=False, unique=True)

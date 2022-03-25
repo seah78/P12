@@ -21,5 +21,5 @@ class UserAdmin(admin.ModelAdmin):
     form = UserForm
 
     list_display = ('first_name', 'last_name', 'user_name', 'department', 'password', 'is_admin')
-    list_filter = ('department')
-    search_fields = ('department')
+    list_filter = ('department',)
+    search_fields = ('department',)

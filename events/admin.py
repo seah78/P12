@@ -8,6 +8,6 @@ class EventAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 
                     'status', 'contract', 
                     'support_user')
-    list_filter = ('contract')
-    search_fields = ('name')
+    list_filter = ('contract',)
+    search_fields = ('name',)
 

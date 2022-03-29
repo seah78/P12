@@ -13,8 +13,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
+from rest_framework_nested import routers
+from rest_framework_simplejwt.views import TokenObtainPairView
 from django.contrib import admin
 from django.urls import path, include
+
+crm_router = routers.SimpleRouter(trailing_slash=False)
+crm_router.register(r"/?", CRMViewSet)
 
 urlpatterns = [
     path("", include("account.urls")),

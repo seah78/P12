@@ -1,5 +1,7 @@
 from rest_framework.permissions import BasePermission
-from rest_framework.exceptions import PermissionDenied
-from django.core.exceptions import ObjectDoesNotExist
 
+from user.models import User
 from account.models import Customer
+
+class CustomerPermissions(BasePermission):
+    pass

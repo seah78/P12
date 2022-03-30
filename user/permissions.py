@@ -1,18 +1,24 @@
 from rest_framework.permissions import BasePermission
-from rest_framework.exceptions import PermissionDenied
 from django.core.exceptions import ObjectDoesNotExist
+
 
 from user.models import User
 
 class IsManager(BasePermission):
+    """
+    
+    """
     def is_manager(self, user):
-        pass
-        
-        """
         try:
-            User.objects.get(user=user  )
-        """
+            User.objects.get(user=user.deparment.DEPARMENT_MANAGER)
+        except ObjectDoesNotExist:
+            return False
+        return True
+    
             
+        
+        
+        
             
             
 class IsSeller(BasePermission):

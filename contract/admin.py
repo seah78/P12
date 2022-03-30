@@ -5,7 +5,7 @@ from contract.models import Contract
 @admin.register(Contract)
 class ContractAdmin(admin.ModelAdmin):
     list_display = ('name', 'description', 'value',
-     'payment_deadline', 'status', 'saler',
+     'payment_deadline', 'status', 'seller',
      'customer')
     list_filter = ('customer', 'status',)
     search_fields = ('name', 'status',)

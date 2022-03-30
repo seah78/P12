@@ -3,6 +3,8 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 
 from user.views import UserViewSet
 
+
+"""
 user_router = routers.SimpleRouter(trailing_slash=False)
 user_router.register(r"users/?", UserViewSet)
 
@@ -22,3 +24,4 @@ comments_router = routers.NestedSimpleRouter(
     issues_router, r"issues/?", lookup="issues", trailing_slash=False
 )
 comments_router.register(r"comments/?", CommentsViewSet, basename="comments")
+"""

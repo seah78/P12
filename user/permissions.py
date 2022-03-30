@@ -1,4 +1,4 @@
-from rest_framework.permissions import BasePermission
+from rest_framework.permissions import BasePermission, SAFE_METHODS
 from django.core.exceptions import ObjectDoesNotExist
 
 
@@ -6,17 +6,17 @@ from user.models import User
 
 class IsManager(BasePermission):
     """
-    
+        Manager : Read only on the CRM
     """
-    def is_manager(self, user):
-        try:
-            User.objects.get(user=user.deparment.DEPARMENT_MANAGER)
-        except ObjectDoesNotExist:
-            return False
-        return True
+    def has_permission(self, request, view):
+        return request.user.department == User.DEPARTMENT_MANAGER and request.method in SAFE_METHODS
+    
+    def has_object_permission(self, request, view, obj):
+        return self.has_permission(request, view)
     
             
-        
+
+
         
         
             

@@ -1,7 +1,10 @@
 from rest_framework_nested import routers
 from rest_framework_simplejwt.views import TokenObtainPairView
-from user.views import 
 
+from user.views import UserViewSet
+
+user_router = routers.SimpleRouter(trailing_slash=False)
+user_router.register(r"users/?", UserViewSet)
 
 projects_router = routers.SimpleRouter(trailing_slash=False)
 projects_router.register(r"projects/?", ProjectViewSet)

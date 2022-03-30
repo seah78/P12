@@ -8,6 +8,6 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Contract
         fields = '__all__'
-        read_only__fields = ['created_datetime', 'update_datetime', 'saler', 'customer', 'id']
+        read_only__fields = ['created_datetime', 'update_datetime', 'seller', 'customer', 'id']
         
         

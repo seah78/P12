@@ -8,11 +8,11 @@ class User(AbstractUser):
     """
 
     DEPARTMENT_MANAGER = "manager"
-    DEPARTMENT_SALER = "saler"
+    DEPARTMENT_SELLER = "seller"
     DEPARTEMENT_TECHNICIAN = "technician"
     DEPARTMENT_CHOICES = [
         (DEPARTMENT_MANAGER, "Manager"),
-        (DEPARTMENT_SALER, "Saler"),
+        (DEPARTMENT_SELLER, "Seller"),
         (DEPARTEMENT_TECHNICIAN, "Technician"),
     ]
 

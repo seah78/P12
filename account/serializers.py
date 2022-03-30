@@ -8,5 +8,5 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = '__all__'
-        read_only__fields = ['created_datetime', 'update_datetime', 'salers', 'id']
+        read_only__fields = ['created_datetime', 'update_datetime', 'seller', 'id']
         

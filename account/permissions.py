@@ -1,19 +1,12 @@
-from rest_framework.permissions import BasePermission, SAFE_METHODS
+from rest_framework.permissions import BasePermission
 
-from user.models import User
 from account.models import Customer
 
-class CustomerPermissions(BasePermission):
-    """ 
-    
-    """
+
+class IsCustomerSellerContact(BasePermission):
     def has_permission(self, request, view):
-        if request.user.department == User.DEPARTEMENT_TECHNICIAN:
-            return request.method in SAFE_METHODS
-        return request.user.department == User.DEPARTMENT_SELLER
-        
-    def has_object_permission(self, request, view, obj):
-        if request.method == 'DELETE':
-            request.user.department == User.DEPARTMENT_SELLER and obj.status is False
-        elif request.user.department == User.DEPARTEMENT_TECHNICIAN:
-            return obj in Customer.objects.filter()
+        is_seller = request.user.department.pk == get_role_id_by_name(name="seller")
+        if "pk" not in view.kwargs:
+            return request.method in ["GET", "POST"] and is_seller
+        customer = Customer.objects.get(pk=view.kwargs["pk"])
+        return customer.seller == request.user

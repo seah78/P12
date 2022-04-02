@@ -1,12 +1,12 @@
 from rest_framework import serializers
 from account.models import Customer
 
-class UserSerializer(serializers.ModelSerializer):
+class CustomerSerializer(serializers.ModelSerializer):
     """
     customer serializer
     """
     class Meta:
         model = Customer
-        fields = '__all__'
-        read_only__fields = ['created_datetime', 'update_datetime', 'seller', 'id']
+        fields = ("id", "company_name", "first_name", "last_name", "email", "phone_number", "mobile_number", "status", "seller")
+
         

@@ -1,16 +1,41 @@
 from rest_framework.permissions import BasePermission
 
 from account.models import Customer
+    
+METHODES_CREATE_READ = [ 'GET', 'POST']
+METHODES_PUT_DEL = [ 'PUT', 'DELETE']
 
 
-class IsCustomerSellerContact(BasePermission):
-    """
-        Seller : can CREATE customer or prospect, can VIEW and UPDATE any prospect and their own customer, can DELETE prospect only
-        Support : can VIEW their own customer
-    """
+class IsManager(BasePermission):
     def has_permission(self, request, view):
-        is_seller = request.user.department.pk == get_role_id_by_name(name="seller")
-        if "pk" not in view.kwargs:
-            return request.method in ["GET", "POST"] and is_seller
-        customer = Customer.objects.get(pk=view.kwargs["pk"])
-        return customer.seller == request.user
+        if request.user.role == 'Manager':
+            return True
+
+class IsSalerContact(BasePermission):
+    message = "L'utilisateur doit être le référent commercial du client"
+    def has_permission(self, request, view): # obj
+        if request.user.role == 'Seller': 
+            if request.method in METHODES_PUT_DEL:
+                id_customer = view.kwargs['pk']
+                customer = Customer.objects.get(id=id_customer)
+                if customer.seller.id == request.user.id :
+                    return True
+            elif request.method in METHODES_CREATE_READ:
+                if not view.kwargs:
+                    return True
+                else:
+                    id_customer = view.kwargs['pk']
+                    customer = Customer.objects.get(id=id_customer)
+                    if customer.seller.id == request.user.id :
+                        return True
+        else:
+            return False
+
+class IsTechnicianEventContact(BasePermission):
+    message = "L'utilisateur doit être le gestionnaire des events du client"
+    def has_permission(self, request, view):
+        if request.user.role == 'Technician':
+            if request.method == 'GET':
+                return True
+        else:
+            return False

@@ -20,6 +20,6 @@ class UserForm(forms.ModelForm):
 class UserAdmin(admin.ModelAdmin):
     form = UserForm
 
-    list_display = ('username', 'first_name', 'last_name', 'email', 'department', 'password', 'is_admin')
+    list_display = ('id','username', 'first_name', 'last_name', 'email', 'department', 'password', 'is_admin')
     list_filter = ('department',)
     search_fields = ('username', 'department',)

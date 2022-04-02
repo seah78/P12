@@ -24,3 +24,6 @@ class Customer(models.Model):
     created_datetime = models.DateTimeField(auto_now_add=True)
     update_datetime = models.DateTimeField(auto_now=True)
     seller = models.ForeignKey(to=User, on_delete=models.DO_NOTHING)
+    
+    def __str__(self):
+        return f"{self.company_name}"

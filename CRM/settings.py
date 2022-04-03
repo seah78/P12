@@ -139,8 +139,11 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 100,
     "DEFAULT_AUTHENTICATION_CLASSES": {
-        "rest_framework_simplejwt.authentication.JTAuthentication",
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
     },
 }
 
-SIMPLE_JWT = {"ACCESS_TOKEN_LIFETIME": timedelta(minutes=120)}
+SIMPLE_JWT = {"ACCESS_TOKEN_LIFETIME": timedelta(minutes=120),
+              'REFRESH_TOKEN_LIFTIME': timedelta(minutes=60),
+              'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+              }

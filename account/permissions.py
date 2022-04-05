@@ -8,7 +8,7 @@ METHODES_PUT_DEL = [ 'PUT', 'DELETE']
 
 class IsManager(BasePermission):
     def has_permission(self, request, view):
-        if request.user.deparment == 'Manager':
+        if request.user.department == 'Manager':
             return True
 
 class IsSalerContact(BasePermission):

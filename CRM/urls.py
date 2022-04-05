@@ -23,6 +23,6 @@ urlpatterns = [
     #path("", include("contract.urls")),
     #path("", include("events.urls")),
     path("", include("user.urls")),
-    path("dj-rest-auth", include("dj_rest_auth.urls")),
+    path("dj-rest-auth/", include("dj_rest_auth.urls")),
     path('admin/', admin.site.urls),
 ]

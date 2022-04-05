@@ -30,12 +30,12 @@ class CustomerViewset(ModelViewSet):
         return Customer.objects.all()
 
     def list(self, request):
-        if request.user.role == 'Seller':
+        if request.user.departement == 'Seller':
             id_user = request.user.id
             customers = Customer.objects.filter(Q(seller=id_user) | Q(status = "Prospect"))
             serializer = CustomerSerializer(customers, many=True)
             return Response(serializer.data)
-        elif request.user.role == 'Technician': 
+        elif request.user.departement == 'Technician': 
             events = Event.objects.filter(support_user=request.user.id)
             id_clients = []
             for event in events:
@@ -43,7 +43,7 @@ class CustomerViewset(ModelViewSet):
             customer = Customer.objects.filter(id__in=id_clients)
             serializer = CustomerSerializer(customer, many=True)
             return Response(serializer.data)
-        elif request.user.role == 'Manager':
+        elif request.user.department == 'Manager':
             customer = Customer.objects.all()
             serializer = CustomerSerializer(customer, many=True)
             return Response(serializer.data)

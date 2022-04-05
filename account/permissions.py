@@ -8,13 +8,13 @@ METHODES_PUT_DEL = [ 'PUT', 'DELETE']
 
 class IsManager(BasePermission):
     def has_permission(self, request, view):
-        if request.user.role == 'Manager':
+        if request.user.deparment == 'Manager':
             return True
 
 class IsSalerContact(BasePermission):
     message = "L'utilisateur doit être le référent commercial du client"
     def has_permission(self, request, view): # obj
-        if request.user.role == 'Seller': 
+        if request.user.department == 'Seller': 
             if request.method in METHODES_PUT_DEL:
                 id_customer = view.kwargs['pk']
                 customer = Customer.objects.get(id=id_customer)
@@ -34,7 +34,7 @@ class IsSalerContact(BasePermission):
 class IsTechnicianEventContact(BasePermission):
     message = "L'utilisateur doit être le gestionnaire des events du client"
     def has_permission(self, request, view):
-        if request.user.role == 'Technician':
+        if request.user.department == 'Technician':
             if request.method == 'GET':
                 return True
         else:

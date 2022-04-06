@@ -4,16 +4,33 @@ from rest_framework.permissions import BasePermission
 from contract.models import Contract
 
 
-class IsContractSellerContact(BasePermission):
-    """
-        Seller : can CREATE new contract
-                     can VIEW and UPDATE contract of their own clients if is valid
-        Support : can VIEW contracts of their own clients
-    """    
+METHODES_CREATE_READ = [ 'GET', 'POST']
+METHODES_PUT_DEL = [ 'PUT', 'DELETE']
+
+
+class IsManager(BasePermission):
     def has_permission(self, request, view):
-        is_seller = request.user.department.pk == get_role_id_by_name(name="seller")
-        if "pk" not in view.kwargs:
-            return request.method in ["GET", "POST"] and is_seller
-        contract = Contract.objects.get(pk=view.kwargs["pk"])
-        return contract.seller == request.user
-    
+        if request.user.department == 'manager':
+            return True
+
+
+class IsSalerContact(BasePermission):
+    message = "L'utilisateur doit être le référent commercial du contrat"
+
+    def has_permission(self, request, view): # obj
+        if request.user.department == 'seller': 
+            if request.method in METHODES_PUT_DEL:
+                id_contract = view.kwargs['pk']
+                contract = Contract.objects.get(id=id_contract)
+                if contract.seller.id == request.user.id :
+                    return True
+            elif request.method in METHODES_CREATE_READ:
+                if not view.kwargs:
+                    return True
+                else:
+                    id_contract = view.kwargs['pk']
+                    contract = Contract.objects.get(id=id_contract)
+                    if contract.seller.id == request.user.id :
+                        return True
+        else:
+            return False

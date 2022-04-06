@@ -1,10 +1,7 @@
-from rest_framework.generics import GenericAPIView
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
-from user.serializers import UserSerializer
-from user.models import User
-from rest_framework.response import Response
+
 
 
 from django.db.models import Q
@@ -20,7 +17,7 @@ class CustomerViewset(ModelViewSet):
     permission_classes = [IsAuthenticated, IsSalerContact | IsTechnicianEventContact | IsManager]
     serializer_class = CustomerSerializer
     queryset = Customer.objects.all()
-    http_method_names = ['get', 'post', 'put', 'delete']
+    http_method_names = ['get', 'post', 'put']
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ("first_name", "email")
 

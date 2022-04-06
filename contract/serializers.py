@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from contract.models import Contract
 
-class UserSerializer(serializers.ModelSerializer):
+class ContractSerializer(serializers.ModelSerializer):
     """
     contract serializer
     """

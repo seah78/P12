@@ -1,17 +1,39 @@
 from rest_framework.permissions import BasePermission
 
-
 from events.models import Event
 
-class IsEventSupportContact(BasePermission):
-    """
-        Seller : can CREATE new event, can VIEW events of their own customer, can UPDATE events of their own customer if not completed
-        Support : can VIEW events of their own customer
-                       can UPDATE events of their own customer if not completed 
-    """
+METHODES_CREATE_READ = [ 'GET', 'POST']
+METHODES_PUT_DEL = [ 'PUT']
+
+
+class IsManager(BasePermission):
     def has_permission(self, request, view):
-        is_support = request.user.department.pk == get_role_id_by_name(name="technician")
-        if "pk" not in view.kwargs:
-            return request.method in ["GET", "POST"] and is_support
-        event = Event.objects.get(pk=view.kwargs["pk"])
-        return event.support_user == request.user
+        if request.user.department == 'manager':
+            return True
+
+
+class IsSalerContact(BasePermission):
+    message = "L'utilisateur doit être le référent commercial du contrat"
+
+    def has_permission(self, request, view): # obj
+        if request.user.department == 'seller': 
+            if request.method == 'POST':
+                return True
+        else:
+            return False
+
+
+class IsTechnicianEventContact(BasePermission):
+    message = "L'utilisateur doit être le gestionnaire des events du contrat"
+
+    def has_permission(self, request, view):
+        if request.user.department == 'technician':
+            if request.method == 'GET':
+                return True
+            elif request.method in ['PUT', 'DELETE']:
+                id_event = view.kwargs['pk']
+                event = Event.objects.get(id=id_event)
+                if event.support_user.id == request.user.id :
+                    return True
+        else:
+            return False

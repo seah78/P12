@@ -40,7 +40,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework.authtoken',
-    'rest_framework_simplejwt',
     'dj_rest_auth',
     'django_filters',
     'user',
@@ -141,9 +140,6 @@ AUTH_USER_MODEL = "user.User"
 REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.LimitOffsetPagination",
     "PAGE_SIZE": 100,
-    "DEFAULT_AUTHENTICATION_CLASSES": {
-        "rest_framework_simplejwt.authentication.JWTAuthentication",
-    },
     "DEFAULT_PERMISSION_CLASSES":[
         'rest_framework.permissions.IsAuthenticated',
     ],
@@ -153,7 +149,3 @@ REST_FRAMEWORK = {
     ],
 }
 
-SIMPLE_JWT = {"ACCESS_TOKEN_LIFETIME": timedelta(minutes=120),
-              'REFRESH_TOKEN_LIFTIME': timedelta(minutes=60),
-              'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
-              }

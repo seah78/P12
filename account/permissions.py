@@ -14,7 +14,7 @@ class IsManager(BasePermission):
 class IsSalerContact(BasePermission):
     message = "L'utilisateur doit être le référent commercial du client"
     def has_permission(self, request, view): # obj
-        if request.user.department == 'Seller': 
+        if request.user.department == 'seller': 
             if request.method in METHODES_PUT_DEL:
                 id_customer = view.kwargs['pk']
                 customer = Customer.objects.get(id=id_customer)
@@ -34,7 +34,7 @@ class IsSalerContact(BasePermission):
 class IsTechnicianEventContact(BasePermission):
     message = "L'utilisateur doit être le gestionnaire des events du client"
     def has_permission(self, request, view):
-        if request.user.department == 'Technician':
+        if request.user.department == 'technician':
             if request.method == 'GET':
                 return True
         else:

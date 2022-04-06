@@ -7,6 +7,6 @@ class CustomerSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = Customer
-        fields = ("id", "company_name", "first_name", "last_name", "email", "phone_number", "mobile_number", "status", "seller")
+        fields = "__all__"
 
         

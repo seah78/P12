@@ -10,8 +10,7 @@ from events.models import Event
 
 class EventViewset(ModelViewSet):
 
-    permission_classes = [ IsAuthenticated, IsSalerContact  | IsTechnicianEventContact |
-                           IsManager ]
+    permission_classes = [ IsAuthenticated, IsSalerContact | IsTechnicianEventContact | IsManager ]
     serializer_class = EventSerializer
     queryset = Event.objects.all()
     http_method_names = ['get', 'post', 'put']
@@ -21,3 +20,4 @@ class EventViewset(ModelViewSet):
 
     def get_queryset(self):
         return Event.objects.all()
+    

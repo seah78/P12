@@ -8,8 +8,11 @@ METHODES_PUT_DEL = [ 'PUT', 'DELETE']
 
 class IsManager(BasePermission):
     def has_permission(self, request, view):
-        if request.user.department == 'Manager':
-            return True
+        if request.user.department == 'manager':
+            if request.method == 'GET':
+                return True
+        else:
+            return False
 
 class IsSalerContact(BasePermission):
     message = "L'utilisateur doit être le référent commercial du client"

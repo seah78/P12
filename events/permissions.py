@@ -5,11 +5,13 @@ from events.models import Event
 METHODES_CREATE_READ = [ 'GET', 'POST']
 METHODES_PUT_DEL = [ 'PUT']
 
-
 class IsManager(BasePermission):
     def has_permission(self, request, view):
         if request.user.department == 'manager':
-            return True
+            if request.method == 'GET':
+                return True
+        else:
+            return False
 
 
 class IsSalerContact(BasePermission):
@@ -17,7 +19,7 @@ class IsSalerContact(BasePermission):
 
     def has_permission(self, request, view): # obj
         if request.user.department == 'seller': 
-            if request.method == 'POST':
+            if request.method in METHODES_CREATE_READ: #== 'POST':
                 return True
         else:
             return False
@@ -37,3 +39,5 @@ class IsTechnicianEventContact(BasePermission):
                     return True
         else:
             return False
+        
+

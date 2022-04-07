@@ -4,9 +4,9 @@ from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 
 from events.serializers import EventSerializer
-from events.permissions import IsManager, IsSalerContact, IsTechnicianEventContact
+from events.permissions import IsSalerContact, IsTechnicianEventContact
+from user.permissions import IsManager
 from events.models import Event
-
 
 class EventViewset(ModelViewSet):
 
@@ -20,4 +20,18 @@ class EventViewset(ModelViewSet):
 
     def get_queryset(self):
         return Event.objects.all()
+    
+    def list(self, request):
+        if request.user.department == 'seller':
+            events = Event.objects.filter(support_user=request.user.id)
+            serializer = EventSerializer(events, many=True)
+            return Response(serializer.data)
+        elif request.user.department == 'technician': 
+            events = Event.objects.filter(support_user=request.user.id)
+            serializer = EventSerializer(events, many=True)
+            return Response(serializer.data)
+        elif request.user.department == 'manager':
+            events = Event.objects.all()
+            serializer = EventSerializer(events, many=True)
+            return Response(serializer.data)
     

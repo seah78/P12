@@ -2,15 +2,15 @@ from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 
-
-
 from django.db.models import Q
 from django_filters.rest_framework import DjangoFilterBackend
 
 from account.serializers import CustomerSerializer
 from account.models import Customer
 from events.models import Event
-from account.permissions import IsSalerContact, IsTechnicianEventContact, IsManager
+from account.permissions import IsSalerContact, IsTechnicianEventContact
+from user.permissions import IsManager
+
 
 class CustomerViewset(ModelViewSet): 
 

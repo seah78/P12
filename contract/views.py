@@ -3,7 +3,8 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 
-from contract.permissions import IsSalerContact, IsManager
+from contract.permissions import IsSalerContact
+from user.permissions import IsManager
 from contract.serializers import ContractSerializer
 from contract.models import Contract
 

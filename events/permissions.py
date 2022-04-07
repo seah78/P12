@@ -5,15 +5,6 @@ from events.models import Event
 METHODES_CREATE_READ = [ 'GET', 'POST']
 METHODES_PUT_DEL = [ 'PUT']
 
-class IsManager(BasePermission):
-    def has_permission(self, request, view):
-        if request.user.department == 'manager':
-            if request.method == 'GET':
-                return True
-        else:
-            return False
-
-
 class IsSalerContact(BasePermission):
     message = "L'utilisateur doit être le référent commercial du contrat"
 

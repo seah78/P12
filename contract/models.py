@@ -26,4 +26,4 @@ class Contract(models.Model):
     customer = models.ForeignKey(to=Customer, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name} - {self.customer} - "

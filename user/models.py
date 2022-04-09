@@ -26,4 +26,5 @@ class User(AbstractUser):
     created_datetime = models.DateTimeField(auto_now_add=True)
     update_datetime = models.DateTimeField(auto_now=True)
     is_admin = models.BooleanField(default=False)
+    is_staff = models.BooleanField(default=False)
     last_login = models.DateTimeField(auto_now=True)

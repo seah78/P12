@@ -9,4 +9,5 @@ class EventSerializer(serializers.ModelSerializer):
         model = Event
         fields = '__all__'
         read_only__fields = ['created_datetime', 'update_datetime', 'contract', 'support_user', 'id']
+
         

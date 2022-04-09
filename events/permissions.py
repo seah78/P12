@@ -23,7 +23,7 @@ class IsTechnicianEventContact(BasePermission):
         if request.user.department == 'technician':
             if request.method == 'GET':
                 return True
-            elif request.method in ['PUT', 'DELETE']:
+            elif request.method in METHODES_PUT_DEL:
                 id_event = view.kwargs['pk']
                 event = Event.objects.get(id=id_event)
                 if event.support_user.id == request.user.id :

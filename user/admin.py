@@ -6,7 +6,7 @@ from user.models import User
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ("username", "password", "first_name", "last_name", "email", "department", "is_admin")
+        fields = ("username", "password", "first_name", "last_name", "email", "department", "is_admin", "is_staff")
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -20,6 +20,6 @@ class UserForm(forms.ModelForm):
 class UserAdmin(admin.ModelAdmin):
     form = UserForm
 
-    list_display = ('id','username', 'first_name', 'last_name', 'email', 'department', 'password', 'is_admin')
+    list_display = ('id','username', 'first_name', 'last_name', 'email', 'department', 'is_admin', 'is_staff', 'password')
     list_filter = ('department',)
     search_fields = ('username', 'department',)

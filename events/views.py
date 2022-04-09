@@ -35,3 +35,4 @@ class EventViewset(ModelViewSet):
             serializer = EventSerializer(events, many=True)
             return Response(serializer.data)
     
+    

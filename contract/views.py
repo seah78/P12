@@ -23,7 +23,12 @@ class ContractViewset(ModelViewSet):
         return Contract.objects.all()
 
     def list(self, request):
-        id_user = request.user.id
-        contract = Contract.objects.filter(seller=id_user)
-        serializer = ContractSerializer(contract, many=True)
-        return Response(serializer.data)
+        if request.user.department == 'seller':
+            id_user = request.user.id
+            contract = Contract.objects.filter(seller=id_user)
+            serializer = ContractSerializer(contract, many=True)
+            return Response(serializer.data)
+        elif request.user.department == 'manager':
+            contract = Contract.objects.all()
+            serializer = ContractSerializer(contract, many=True)
+            return Response(serializer.data)

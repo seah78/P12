@@ -26,4 +26,4 @@ class Customer(models.Model):
     seller = models.ForeignKey(to=User, on_delete=models.DO_NOTHING)
     
     def __str__(self):
-        return f"{self.company_name}"
+        return f"{self.company_name} - {self.first_name} - {self.email}"

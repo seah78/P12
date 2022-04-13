@@ -7,5 +7,5 @@ contract_router.register(r"contract/?", ContractViewset, basename="contract")
 
 
 urlpatterns = [
-    path('', include(contract_router.urls)),
+    path("", include(contract_router.urls)),
 ]

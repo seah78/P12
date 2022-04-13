@@ -1,6 +1,4 @@
 from django.db import models
-from django.db.models import Q
-
 
 from contract.models import Contract
 from user.models import User

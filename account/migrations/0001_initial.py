@@ -15,19 +15,39 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Customer',
+            name="Customer",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('company_name', models.CharField(max_length=255)),
-                ('first_name', models.CharField(max_length=30)),
-                ('last_name', models.CharField(max_length=30)),
-                ('email', models.EmailField(max_length=60, unique=True)),
-                ('phone_number', models.CharField(max_length=10)),
-                ('mobile_number', models.CharField(max_length=10)),
-                ('status', models.CharField(choices=[('prospect', 'Prospect'), ('customer', 'Customer')], max_length=50)),
-                ('created_datetime', models.DateTimeField(auto_now_add=True)),
-                ('update_datetime', models.DateTimeField(auto_now=True)),
-                ('salers', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("company_name", models.CharField(max_length=255)),
+                ("first_name", models.CharField(max_length=30)),
+                ("last_name", models.CharField(max_length=30)),
+                ("email", models.EmailField(max_length=60, unique=True)),
+                ("phone_number", models.CharField(max_length=10)),
+                ("mobile_number", models.CharField(max_length=10)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("prospect", "Prospect"), ("customer", "Customer")],
+                        max_length=50,
+                    ),
+                ),
+                ("created_datetime", models.DateTimeField(auto_now_add=True)),
+                ("update_datetime", models.DateTimeField(auto_now=True)),
+                (
+                    "salers",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

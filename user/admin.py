@@ -3,10 +3,21 @@ from django.contrib import admin
 
 from user.models import User
 
+
 class UserForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ("username", "password", "first_name", "last_name", "email", "department", "is_admin", "is_staff")
+        fields = (
+            "username",
+            "password",
+            "first_name",
+            "last_name",
+            "email",
+            "department",
+            "is_superuser",
+            "is_admin",
+            "is_staff",
+        )
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -14,12 +25,26 @@ class UserForm(forms.ModelForm):
         if commit:
             user.save()
         return user
-    
+
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
     form = UserForm
 
-    list_display = ('id','username', 'first_name', 'last_name', 'email', 'department', 'is_admin', 'is_staff', 'password')
-    list_filter = ('department',)
-    search_fields = ('username', 'department',)
+    list_display = (
+        "id",
+        "username",
+        "first_name",
+        "last_name",
+        "email",
+        "department",
+        "is_superuser",
+        "is_admin",
+        "is_staff",
+        "password",
+    )
+    list_filter = ("department",)
+    search_fields = (
+        "username",
+        "department",
+    )

@@ -7,5 +7,5 @@ event_router.register(r"event/?", EventViewset, basename="event")
 
 
 urlpatterns = [
-    path('', include(event_router.urls)),
+    path("", include(event_router.urls)),
 ]

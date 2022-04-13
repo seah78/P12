@@ -11,23 +11,53 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('contract', '0001_initial'),
+        ("contract", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Event',
+            name="Event",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('description', models.TextField()),
-                ('start_date', models.DateField()),
-                ('end_date', models.DateField()),
-                ('status', models.CharField(choices=[('planned', 'Planned'), ('started', 'Started'), ('completed', 'Completed')], max_length=50)),
-                ('created_datetime', models.DateTimeField(auto_now_add=True)),
-                ('update_datetime', models.DateTimeField(auto_now=True)),
-                ('contract', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='contract.contract')),
-                ('support_user', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("description", models.TextField()),
+                ("start_date", models.DateField()),
+                ("end_date", models.DateField()),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("planned", "Planned"),
+                            ("started", "Started"),
+                            ("completed", "Completed"),
+                        ],
+                        max_length=50,
+                    ),
+                ),
+                ("created_datetime", models.DateTimeField(auto_now_add=True)),
+                ("update_datetime", models.DateTimeField(auto_now=True)),
+                (
+                    "contract",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="contract.contract",
+                    ),
+                ),
+                (
+                    "support_user",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]

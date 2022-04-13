@@ -25,6 +25,7 @@ class User(AbstractUser):
     department = models.CharField(max_length=15, choices=DEPARTMENT_CHOICES)
     created_datetime = models.DateTimeField(auto_now_add=True)
     update_datetime = models.DateTimeField(auto_now=True)
+    is_superuser = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
     last_login = models.DateTimeField(auto_now=True)

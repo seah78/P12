@@ -6,13 +6,20 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('user', '0002_remove_user_user_name_alter_user_username'),
+        ("user", "0002_remove_user_user_name_alter_user_username"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
-            name='department',
-            field=models.CharField(choices=[('manager', 'Manager'), ('seller', 'Seller'), ('technician', 'Technician')], max_length=15),
+            model_name="user",
+            name="department",
+            field=models.CharField(
+                choices=[
+                    ("manager", "Manager"),
+                    ("seller", "Seller"),
+                    ("technician", "Technician"),
+                ],
+                max_length=15,
+            ),
         ),
     ]

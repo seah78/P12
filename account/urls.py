@@ -7,5 +7,5 @@ customer_router.register(r"client/?", CustomerViewset, basename="client")
 
 
 urlpatterns = [
-    path('', include(customer_router.urls)),
+    path("", include(customer_router.urls)),
 ]

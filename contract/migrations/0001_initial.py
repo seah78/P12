@@ -11,23 +11,49 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('account', '0001_initial'),
+        ("account", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Contract',
+            name="Contract",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=100)),
-                ('description', models.TextField()),
-                ('value', models.FloatField()),
-                ('payment_deadline', models.DateField()),
-                ('created_datetime', models.DateTimeField(auto_now_add=True)),
-                ('update_datetime', models.DateTimeField(auto_now=True)),
-                ('status', models.CharField(choices=[('project', 'Project'), ('valid', 'Valid')], max_length=50)),
-                ('customer', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to='account.customer')),
-                ('saler', models.ForeignKey(on_delete=django.db.models.deletion.DO_NOTHING, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=100)),
+                ("description", models.TextField()),
+                ("value", models.FloatField()),
+                ("payment_deadline", models.DateField()),
+                ("created_datetime", models.DateTimeField(auto_now_add=True)),
+                ("update_datetime", models.DateTimeField(auto_now=True)),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[("project", "Project"), ("valid", "Valid")],
+                        max_length=50,
+                    ),
+                ),
+                (
+                    "customer",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to="account.customer",
+                    ),
+                ),
+                (
+                    "saler",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.DO_NOTHING,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
         ),
     ]
